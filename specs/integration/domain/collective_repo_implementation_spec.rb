@@ -1,4 +1,4 @@
-require './app/collectives/collective_repo.rb'
+require './lib/domain/collective_repo.rb'
 require_relative './collective_repo_shared_examples.rb'
 
 RSpec.describe Collectives::CollectiveRepo do

@@ -1,4 +1,4 @@
-require './app/collectives/collective.rb'
+require './lib/domain/collective.rb'
 
 class CollectiveRepoRake
   KNOWN_COLLECTIVES = %w[webpack elixir home ruby]

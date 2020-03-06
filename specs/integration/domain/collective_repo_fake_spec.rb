@@ -1,4 +1,4 @@
-require './specs/collectives/helpers/collective_repo_fake.rb'
+require './specs/helpers/collective_repo_fake.rb'
 require_relative './collective_repo_shared_examples.rb'
 
 RSpec.describe CollectiveRepoRake do

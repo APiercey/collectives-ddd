@@ -1,5 +1,5 @@
-require './app/open_collective/client.rb'
-require_relative  './collective.rb'
+require './lib/infrastructure/open_collective/client.rb'
+require_relative './collective.rb'
 
 module Collectives
   KNOWN_COLLECTIVES = %w[webpack jailer pizzaql typeorm witchcraft commanded]

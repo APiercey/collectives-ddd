@@ -1,4 +1,4 @@
-require './app/collectives/collective.rb'
+require './lib/domain/collective.rb'
 
 RSpec.shared_examples "a collective repo" do
   describe "#find_by_slug" do
