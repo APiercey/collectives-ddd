@@ -1,6 +1,6 @@
 require './lib/domain/collective.rb'
 
-class CollectiveRepoRake
+class CollectiveRepoFake
   KNOWN_COLLECTIVES = %w[webpack elixir home ruby]
 
   def initialize(*args)
