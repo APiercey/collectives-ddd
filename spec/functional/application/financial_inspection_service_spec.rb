@@ -1,4 +1,3 @@
-require './spec/spec_helper'
 require './lib/application/financial_inspection_service.rb'
 require './spec/helpers/collective_repo_fake.rb'
 
