@@ -29,5 +29,17 @@ FactoryBot.define do
     trait :with_low_contributers do
       contributors_count { 3 }
     end
+
+    trait :with_medium_contributers do
+      contributors_count { 50 }
+    end
+
+    trait :with_high_contributers do
+      contributors_count { 200 }
+    end
+
+    trait :with_viral_contributers do
+      contributors_count { 201 }
+    end
   end
 end
