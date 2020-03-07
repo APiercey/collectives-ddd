@@ -1,12 +1,8 @@
 require './lib/domain/collective.rb'
 
 class CollectiveRepoFake
-  KNOWN_COLLECTIVES = %w[webpack elixir home ruby]
-
-  def initialize(*args)
-    @collectives = KNOWN_COLLECTIVES.map do |slug|
-      Collectives::Collective.new(slug: slug)
-    end
+  def initialize(collectives)
+    @collectives = collectives
   end
 
   def find_by_slug(slug)
@@ -18,7 +14,7 @@ class CollectiveRepoFake
   end
 
   def known_collectives
-    KNOWN_COLLECTIVES
+    collectives.map(&:slug)
   end
 
   private
