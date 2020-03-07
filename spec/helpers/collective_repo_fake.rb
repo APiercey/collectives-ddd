@@ -17,6 +17,10 @@ class CollectiveRepoFake
     collectives.map(&:slug)
   end
 
+  def find_by(spec)
+    collectives.filter { |c| spec.satisfies? c }
+  end
+
   private
 
   attr_reader :collectives
