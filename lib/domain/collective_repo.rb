@@ -14,11 +14,12 @@ module Collectives
     end
 
     def all
-      KNOWN_COLLECTIVES.map do |slug|
-        Thread.new do
-          parse_response(client.find_by_slug(slug))
-        end
-      end.map(&:value)
+      fetch_collectiob_by_slugs(KNOWN_COLLECTIVES)
+    end
+
+    def find_by(spec)
+      fetch_collectiob_by_slugs(KNOWN_COLLECTIVES)
+        .filter { |c| spec.satisfies? c }
     end
 
     def known_collectives
@@ -28,6 +29,14 @@ module Collectives
     private
 
     attr_reader :client
+
+    def fetch_collectiob_by_slugs(slugs)
+      slugs.map do |slug|
+        Thread.new do
+          parse_response(client.find_by_slug(slug))
+        end
+      end.map(&:value)
+    end
 
     def parse_response(response)
       raise response.error unless response.success?
@@ -42,6 +51,5 @@ module Collectives
         contributors_count: response.data.fetch("contributorsCount")
       )
     end
-
   end
 end
