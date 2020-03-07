@@ -1,0 +1,72 @@
+
+CollectiveService
+  #find_succesful_collectives
+[32m    should contain exactly #<Collectives::Collective:0x000055c4e7ca5448 @slug="slug_2", @currency="EUR", @image="http://example.com/test.png", @balance=950, @yearly_income=2000, @backers_count=100, @contributors_count=200>[0m
+  #find_upcoming_collectives
+[32m    should contain exactly #<Collectives::Collective:0x000055c4e7e8b780 @slug="slug_3", @currency="EUR", @image="http://example.com/test.png", @balance=950, @yearly_income=2000, @backers_count=100, @contributors_count=50>[0m
+
+FinancialInspectionService
+  #calculate_total_assets
+[32m    should include {"USD" => 2000, "PLN" => 9000}[0m
+
+Collectives::LowContributorsSpecification
+  behaves like a specification
+    #satisifes?
+      canidate satisfies
+[32m        should be truthy[0m
+      canidate does not satisfy
+[32m        should be falsy[0m
+
+Collectives::SuccessfulCollectiveSpecification
+  behaves like a specification
+    #satisifes?
+      canidate satisfies
+[32m        should be truthy[0m
+      canidate does not satisfy
+[32m        should be falsy[0m
+
+Collectives::UpcomingCollectiveSpecification
+  behaves like a specification
+    #satisifes?
+      canidate satisfies
+[32m        should be truthy[0m
+      canidate does not satisfy
+[32m        should be falsy[0m
+
+CollectiveRepoFake
+  #find_by_slug
+[32m    should be a kind of Collectives::Collective[0m
+  #all
+[32m    should be a kind of Enumerable[0m
+[32m    should not be empty[0m
+[32m    should all be a kind of Collectives::Collective[0m
+  #find_by
+[32m    should be a kind of Enumerable[0m
+[32m    should not be empty[0m
+[32m    should all be a kind of Collectives::Collective[0m
+
+Collectives::CollectiveRepo
+  #find_by_slug
+[32m    should be a kind of Collectives::Collective[0m
+  #all
+[32m    should be a kind of Enumerable[0m
+[32m    should not be empty[0m
+[32m    should all be a kind of Collectives::Collective[0m
+  #find_by
+[32m    should be a kind of Enumerable[0m
+[32m    should not be empty[0m
+[32m    should all be a kind of Collectives::Collective[0m
+
+OpenCollective::Client
+  #find_by_slug
+[32m    should be a kind of OpenCollective::Response[0m
+    #error
+[32m      should be nil[0m
+    #success?
+[32m      should be truthy[0m
+    .data
+[32m      should include {"slug" => (be a kind of String), "currency" => (be a currency code), "image" => (start with "http"), "balance" => (be a kind of Integer), "yearlyIncome" => (be a kind of Integer), "backersCount" => (be a kind of Integer), "contributorsCount" => (be a kind of Integer)}[0m
+
+Finished in 5.43 seconds (files took 0.22365 seconds to load)
+[32m27 examples, 0 failures[0m
+

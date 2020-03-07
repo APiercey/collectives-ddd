@@ -1,2 +1,2 @@
 docs:
-	bundle exec rspec --format html --out doc.html
+	bundle exec rspec --format doc --out doc.txt
