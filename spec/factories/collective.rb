@@ -26,8 +26,8 @@ FactoryBot.define do
       contributors_count { 1000 }
     end
 
-    trait :with_few_contributers do
-      contributors_count { 7 }
+    trait :with_low_contributers do
+      contributors_count { 3 }
     end
   end
 end
