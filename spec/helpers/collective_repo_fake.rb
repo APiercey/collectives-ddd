@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 require './lib/domain/collectives/collective.rb'
+require './lib/infrastructure/repo.rb'
 
 class CollectiveRepoFake
+  include Repo
   include FactoryBot::Syntax::Methods
 
   def initialize
@@ -10,7 +12,9 @@ class CollectiveRepoFake
   end
 
   def find_by_slug(slug)
-    collectives.find { |c| c.slug.eql? slug }
+    collective = collectives.find { |c| c.slug.eql? slug }
+
+    collective || raise(EntityNotFound, "#{slug} not found")
   end
 
   def all

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require './lib/domain/collectives/collective.rb'
+require './lib/infrastructure/repo.rb'
 
 RSpec.shared_examples 'a collective repo' do
   subject { repo }
@@ -11,11 +12,23 @@ RSpec.shared_examples 'a collective repo' do
   it { is_expected.to respond_to(:known_collectives).with(0).argument }
 
   describe '#find_by_slug' do
-    let(:collective_slug) { repo.known_collectives.sample }
-
     subject { repo.find_by_slug(collective_slug) }
 
-    it { is_expected.to be_a_kind_of(Collectives::Collective) }
+    context 'when collective exists' do
+      let(:collective_slug) { repo.known_collectives.sample }
+
+      it { is_expected.to be_a_kind_of(Collectives::Collective) }
+    end
+
+    context 'when collective does not exists' do
+      let(:collective_slug) { 'a_slug_that_surely_does_not_exist' }
+
+      it 'raises a Repo::EntityNotFound error' do
+        expect { subject }
+          .to raise_error(Repo::EntityNotFound)
+          .with_message(/#{collective_slug}/)
+      end
+    end
   end
 
   describe '#all' do

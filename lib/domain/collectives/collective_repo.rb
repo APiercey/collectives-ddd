@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 require './lib/infrastructure/open_collective/client.rb'
+require './lib/infrastructure/repo.rb'
 require_relative './collective.rb'
 
 module Collectives
   class CollectiveRepo
+    include Repo
     KNOWN_COLLECTIVES =
       %w[webpack jailer pizzaql typeorm witchcraft commanded].freeze
 
@@ -14,6 +16,13 @@ module Collectives
 
     def find_by_slug(slug)
       parse_response(client.find_by_slug(slug))
+    rescue RuntimeError => e
+      case e.message
+      when 'Not found'
+        raise EntityNotFound, "#{slug} not found"
+      else
+        raise e.message
+      end
     end
 
     def all
