@@ -1,4 +1,6 @@
-require './lib/domain/collective.rb'
+# frozen_string_literal: true
+
+require './lib/domain/collectives/collective.rb'
 
 class CollectiveRepoFake
   def initialize(collectives)

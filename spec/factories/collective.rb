@@ -1,4 +1,6 @@
-require './lib/domain/collective.rb'
+# frozen_string_literal: true
+
+require './lib/domain/collectives/collective.rb'
 
 FactoryBot.define do
   factory :collective, class: Collectives::Collective do

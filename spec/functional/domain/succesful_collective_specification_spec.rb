@@ -1,4 +1,6 @@
-require './lib/domain/successful_collective_specification.rb'
+# frozen_string_literal: true
+
+require './lib/domain/collectives/successful_collective_specification.rb'
 require './spec/helpers/specification_behaviour.rb'
 
 RSpec.describe Collectives::SuccessfulCollectiveSpecification do

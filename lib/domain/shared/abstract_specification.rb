@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class AbstractSpec
   def initialize(*args)
     super(*args)
   end
 
-  def satisfies?(*args)
-    raise "Must implement satisfies"
+  def satisfies?(*_args)
+    raise 'Must implement satisfies'
   end
 
   def and(other)

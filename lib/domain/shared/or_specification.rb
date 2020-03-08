@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrSpec < AbstractSpec
   attr_reader :left, :right
 

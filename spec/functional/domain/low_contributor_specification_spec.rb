@@ -1,4 +1,6 @@
-require './lib/domain/low_contributors_specification.rb'
+# frozen_string_literal: true
+
+require './lib/domain/collectives/low_contributors_specification.rb'
 require './spec/helpers/specification_behaviour.rb'
 
 RSpec.describe Collectives::LowContributorsSpecification do

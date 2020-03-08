@@ -1,5 +1,7 @@
-RSpec.shared_examples "a specification" do
-  describe "#satisifes?" do
+# frozen_string_literal: true
+
+RSpec.shared_examples 'a specification' do
+  describe '#satisifes?' do
     describe 'canidate satisfies' do
       subject { spec.satisfies? valid_canidate }
 

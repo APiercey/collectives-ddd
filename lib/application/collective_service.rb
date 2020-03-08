@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'lib/domain/collectives/upcoming_collective_specification.rb'
-require 'lib/domain/collectives/successful_collective_specification.rb'
+require './lib/domain/collectives/upcoming_collective_specification.rb'
+require './lib/domain/collectives/successful_collective_specification.rb'
 
 # Responsible for providing Collectives under some context, such as filtering
 class CollectiveService

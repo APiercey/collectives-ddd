@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
 require './lib/infrastructure/open_collective/client.rb'
 require_relative './collective.rb'
 
 module Collectives
-  KNOWN_COLLECTIVES = %w[webpack jailer pizzaql typeorm witchcraft commanded]
-
   class CollectiveRepo
+    KNOWN_COLLECTIVES =
+      %w[webpack jailer pizzaql typeorm witchcraft commanded].freeze
+
     def initialize(client:)
       @client = client
     end
@@ -41,14 +44,18 @@ module Collectives
     def parse_response(response)
       raise response.error unless response.success?
 
+      build_collective(response.data)
+    end
+
+    def build_collective(data)
       Collectives::Collective.new(
-        slug: response.data.fetch("slug"),
-        currency: response.data.fetch("currency"),
-        image: response.data.fetch("image"),
-        balance: response.data.fetch("balance"),
-        yearly_income: response.data.fetch("yearlyIncome"),
-        backers_count: response.data.fetch("backersCount"),
-        contributors_count: response.data.fetch("contributorsCount")
+        slug: data.fetch('slug'),
+        currency: data.fetch('currency'),
+        image: data.fetch('image'),
+        balance: data.fetch('balance'),
+        yearly_income: data.fetch('yearlyIncome'),
+        backers_count: data.fetch('backersCount'),
+        contributors_count: data.fetch('contributorsCount')
       )
     end
   end

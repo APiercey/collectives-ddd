@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module OpenCollective
   class Response
     attr_reader :data, :error
@@ -19,6 +21,5 @@ module OpenCollective
     private
 
     attr_reader :success
-
   end
 end

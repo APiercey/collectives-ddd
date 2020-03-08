@@ -2,4 +2,4 @@ Documentation:
   Enabled: false
 Metrics/BlockLength:
   Exclude:
-    - 'spec/factories/**/*.rb'
+    - 'spec/**/*.rb'

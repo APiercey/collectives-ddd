@@ -1,7 +1,9 @@
-require './lib/domain/collective.rb'
+# frozen_string_literal: true
 
-RSpec.shared_examples "a collective repo" do
-  describe "#find_by_slug" do
+require './lib/domain/collectives/collective.rb'
+
+RSpec.shared_examples 'a collective repo' do
+  describe '#find_by_slug' do
     let(:collective_slug) { repo.known_collectives.sample }
 
     subject { repo.find_by_slug(collective_slug) }
@@ -9,7 +11,7 @@ RSpec.shared_examples "a collective repo" do
     it { is_expected.to be_a_kind_of(Collectives::Collective) }
   end
 
-  describe "#all" do
+  describe '#all' do
     subject { repo.all }
 
     it { is_expected.to be_an Enumerable }
@@ -17,7 +19,7 @@ RSpec.shared_examples "a collective repo" do
     it { is_expected.to all be_a(Collectives::Collective) }
   end
 
-  describe "#find_by" do
+  describe '#find_by' do
     let(:spec) do
       Class.new do
         def initialize(slug)
