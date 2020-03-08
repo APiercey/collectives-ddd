@@ -1,14 +1,17 @@
-require './lib/domain/successful_collective_specification.rb'
-require './lib/domain/upcoming_collective_specification.rb'
+# frozen_string_literal: true
 
+require 'lib/domain/collectives/upcoming_collective_specification.rb'
+require 'lib/domain/collectives/successful_collective_specification.rb'
+
+# Responsible for providing Collectives under some context, such as filtering
 class CollectiveService
   def initialize(collective_repo)
     @collective_repo = collective_repo
 
     @successful_collective_specification =
-      Collectives::SuccessfulCollectiveSpecification.new()
+      Collectives::SuccessfulCollectiveSpecification.new
     @upcoming_collective_specification =
-      Collectives::UpcomingCollectiveSpecification.new()
+      Collectives::UpcomingCollectiveSpecification.new
   end
 
   def find_succesful_collectives
