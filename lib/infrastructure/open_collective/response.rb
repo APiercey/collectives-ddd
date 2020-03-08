@@ -11,11 +11,7 @@ module OpenCollective
     end
 
     def success?
-      if success
-        true
-      else
-        false
-      end
+      success ? true : false
     end
 
     private
