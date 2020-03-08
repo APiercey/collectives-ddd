@@ -12,22 +12,28 @@ RSpec.describe CollectiveService do
     build(:collective, :with_medium_contributers)
   end
 
-  let(:collective_repo) do
-    CollectiveRepoFake.new([collective_with_medium_contributers,
-                            collective_with_high_contributers])
-  end
+  let(:collective_repo) { CollectiveRepoFake.new }
 
   subject(:service) { described_class.new(collective_repo) }
+
+  before do
+    [collective_with_high_contributers,
+     collective_with_medium_contributers].each do |collective|
+      collective_repo.add(collective)
+    end
+  end
 
   describe '#find_succesful_collectives' do
     subject { service.find_succesful_collectives }
 
-    it { is_expected.to contain_exactly(collective_with_high_contributers) }
+    it { is_expected.to include(collective_with_high_contributers) }
+    it { is_expected.not_to include(collective_with_medium_contributers) }
   end
 
   describe '#find_upcoming_collectives' do
     subject { service.find_upcoming_collectives }
 
-    it { is_expected.to contain_exactly(collective_with_medium_contributers) }
+    it { is_expected.to include(collective_with_medium_contributers) }
+    it { is_expected.not_to include(collective_with_high_contributers) }
   end
 end
