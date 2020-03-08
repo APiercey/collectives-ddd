@@ -7,4 +7,4 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 gem 'factory_bot'
 gem 'faraday'
 gem 'rspec'
-gem 'rubocop' 
+gem 'rubocop'
