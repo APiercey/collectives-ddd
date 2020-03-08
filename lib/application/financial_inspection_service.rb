@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
+require './lib/domain/assets_service.rb'
+
 class FinancialInspectionService
   def initialize(collective_repo)
     @collective_repo = collective_repo
+    @assets_service = AssetsService.new
   end
 
   def calculate_total_assets
-    collective_repo.all
-                   .group_by(&:currency)
-                   .map { |currency, collectives| { currency => collectives.sum(&:balance) } }
-                   .reduce({}, :merge)
+    assets_service.asset_sums_by_currency collective_repo.all
   end
 
   private
 
-  attr_reader :collective_repo
+  attr_reader :collective_repo, :assets_service
 end
