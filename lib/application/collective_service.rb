@@ -22,6 +22,14 @@ class CollectiveService
     collective_repo.find_by(upcoming_collective_specification)
   end
 
+  def all_collectives
+    collective_repo.all
+  end
+
+  def find_by_slug(slug)
+    collective_repo.find_by_slug slug
+  end
+
   private
 
   attr_reader :collective_repo,

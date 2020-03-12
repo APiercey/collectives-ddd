@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require './lib/domain/collectives/collective_repo.rb'
+require './lib/infrastructure/collective_repo.rb'
 require_relative './collective_repo_shared_examples.rb'
 
 RSpec.describe Collectives::CollectiveRepo, :integration do

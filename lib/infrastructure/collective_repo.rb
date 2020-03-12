@@ -2,7 +2,7 @@
 
 require './lib/infrastructure/open_collective/client.rb'
 require './lib/infrastructure/repo.rb'
-require_relative './collective.rb'
+require './lib/domain/collectives/collective.rb'
 
 module Collectives
   class CollectiveRepo
