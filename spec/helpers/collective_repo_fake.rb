@@ -11,10 +11,10 @@ class CollectiveRepoFake
     @collectives = build_collectives
   end
 
-  def find_by_slug(slug)
-    collective = collectives.find { |c| c.slug.eql? slug }
+  def find_by_uuid(uuid)
+    collective = collectives.find { |c| c.uuid.eql? uuid }
 
-    collective || raise(EntityNotFound, "#{slug} not found")
+    collective || raise(EntityNotFound, "#{uuid} not found")
   end
 
   def all
@@ -22,7 +22,7 @@ class CollectiveRepoFake
   end
 
   def known_collectives
-    collectives.map(&:slug)
+    collectives.map(&:uuid)
   end
 
   def find_by(spec)

@@ -8,7 +8,7 @@ require_relative './application.rb'
 
 application = Application.new
 
-get '/collectives/:slug' do
+get '/collectives/:id' do
   json Web::Operations::Collectives::Show
     .new(application)
     .call(params)

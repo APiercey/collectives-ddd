@@ -4,7 +4,8 @@ require './lib/domain/collectives/collective.rb'
 
 FactoryBot.define do
   factory :collective, class: Collectives::Collective do
-    sequence(:slug) { |n| "slug_#{n}" }
+    sequence(:uuid) { |n| "uuid-#{n}" }
+    sequence(:slug) { |n| "slug-#{n}" }
     currency { 'EUR' }
     image { 'http://example.com/test.png' }
     balance { 950 }

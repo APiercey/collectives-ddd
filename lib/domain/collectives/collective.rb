@@ -3,7 +3,7 @@
 module Collectives
   # A collective - models an Open Collective
   class Collective
-    attr_reader :slug, :currency, :image, :balance,
+    attr_reader :uuid, :slug, :currency, :image, :balance,
                 :yearly_income, :backers_count, :contributors_count
 
     def initialize(options = {})

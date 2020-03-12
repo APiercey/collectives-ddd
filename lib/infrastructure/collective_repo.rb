@@ -8,56 +8,73 @@ module Collectives
   class CollectiveRepo
     include Repo
     KNOWN_COLLECTIVES =
-      %w[webpack jailer pizzaql typeorm witchcraft commanded].freeze
+      {
+        'uuid-1' => 'webpack',
+        'uuid-2' => 'jailer',
+        'uuid-3' => 'pizzaql',
+        'uuid-4' => 'typeorm',
+        'uuid-5' => 'witchcraft',
+        'uuid-6' => 'commanded'
+      }.freeze
 
     def initialize(client:)
       @client = client
     end
 
-    def find_by_slug(slug)
-      parse_response(client.find_by_slug(slug))
+    def find_by_uuid(uuid)
+      response = client.find_by_slug(get_slug(uuid))
+      parse_response(uuid, response)
     rescue RuntimeError => e
       case e.message
       when 'Not found'
-        raise EntityNotFound, "#{slug} not found"
+        raise EntityNotFound, "#{uuid} not found"
       else
         raise e.message
       end
     end
 
     def all
-      fetch_collectiob_by_slugs(KNOWN_COLLECTIVES)
+      fetch_collection_by_uuids(KNOWN_COLLECTIVES.keys)
     end
 
     def find_by(spec)
-      fetch_collectiob_by_slugs(KNOWN_COLLECTIVES)
+      fetch_collection_by_uuids(KNOWN_COLLECTIVES.keys)
         .filter { |c| spec.satisfies? c }
     end
 
     def known_collectives
-      KNOWN_COLLECTIVES
+      KNOWN_COLLECTIVES.keys
     end
 
     private
 
     attr_reader :client
 
-    def fetch_collectiob_by_slugs(slugs)
-      slugs.map do |slug|
+    def get_slug(uuid)
+      KNOWN_COLLECTIVES.fetch(uuid)
+    rescue KeyError
+      raise EntityNotFound, "#{uuid} not found"
+    end
+
+    def fetch_collection_by_uuids(uuids)
+      uuids.map do |uuid|
         Thread.new do
-          parse_response(client.find_by_slug(slug))
+          slug = get_slug(uuid)
+          response = client.find_by_slug(slug)
+          parse_response(uuid, response)
         end
       end.map(&:value)
     end
 
-    def parse_response(response)
+    def parse_response(uuid, response)
       raise response.error unless response.success?
 
-      build_collective(response.data)
+      build_collective(uuid, response.data)
     end
 
-    def build_collective(data)
+    def build_collective(uuid, data)
       Collectives::Collective.new(
+        uuid: uuid,
         slug: data.fetch('slug'),
         currency: data.fetch('currency'),
         image: data.fetch('image'),

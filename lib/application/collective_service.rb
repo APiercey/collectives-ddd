@@ -26,8 +26,8 @@ class CollectiveService
     collective_repo.all
   end
 
-  def find_by_slug(slug)
-    collective_repo.find_by_slug slug
+  def find_by_uuid(uuid)
+    collective_repo.find_by_uuid uuid
   end
 
   private
