@@ -3,9 +3,9 @@
 require './lib/domain/assets_service.rb'
 
 class FinancialInspectionService
-  def initialize(collective_repo)
+  def initialize(collective_repo, assets_service)
     @collective_repo = collective_repo
-    @assets_service = AssetsService.new
+    @assets_service = assets_service
   end
 
   def calculate_total_assets

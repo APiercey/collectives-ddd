@@ -3,6 +3,8 @@
 require './lib/infrastructure/open_collective/client.rb'
 require './lib/infrastructure/collective_repo.rb'
 require './lib/application/collective_service.rb'
+require './lib/application/financial_inspection_service.rb'
+require './lib/domain/assets_service.rb'
 
 class Application
   def open_collective_client
@@ -14,7 +16,16 @@ class Application
                          .new(client: open_collective_client)
   end
 
+  def assets_service
+    @assets_service ||= AssetsService.new
+  end
+
   def collective_service
     @collective_service ||= CollectiveService.new(collective_repo)
+  end
+
+  def financial_inspection_service
+    @financial_inspection_service ||= FinancialInspectionService
+                                      .new(collective_repo, assets_service)
   end
 end

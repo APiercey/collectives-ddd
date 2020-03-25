@@ -7,14 +7,15 @@ require './lib/domain/collectives/collective.rb'
 module Collectives
   class CollectiveRepo
     include Repo
+
     KNOWN_COLLECTIVES =
       {
-        'uuid-1' => 'webpack',
-        'uuid-2' => 'jailer',
-        'uuid-3' => 'pizzaql',
-        'uuid-4' => 'typeorm',
-        'uuid-5' => 'witchcraft',
-        'uuid-6' => 'commanded'
+        '7fecf338-d310-4afc-83a3-0e18bf5d935b' => 'webpack',
+        'd1cd02f3-e5e5-4a05-9c2a-61239d3ca776' => 'jailer',
+        '27b16df2-ca62-418b-8a41-5cfbea2affc3' => 'pizzaql',
+        '691db5ef-e2f2-4cbc-a0b5-6d40d6e4e534' => 'typeorm',
+        '1ca93fd8-6742-46cd-8370-69ed6f099dec' => 'witchcraft',
+        'ef68869d-6a77-49d4-b5f8-c6236478eb71' => 'commanded'
       }.freeze
 
     def initialize(client:)
