@@ -4,7 +4,7 @@ require './lib/infrastructure/open_collective/client.rb'
 require './lib/infrastructure/open_collective/response.rb'
 require 'rspec/expectations'
 
-RSpec.describe OpenCollective::Client do
+RSpec.describe OpenCollective::Client, :contract do
   matcher :be_a_currency_code do
     match do |actual|
       is_correct_size = actual.length == 3
