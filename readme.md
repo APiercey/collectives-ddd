@@ -23,6 +23,7 @@ make start_server
 ..- (Domain indepth)[lib/domain/readme.md]
 - (Specs)[spec/readme.md]
 - (Configuration)[config/readme.md]
+- (Generated Docs)[docs.txt]
 
 # Points of Interest
 The application treats OpenCollective as a blackbox. It attempts to express the domain as domain objects and build features ontop of the API.
