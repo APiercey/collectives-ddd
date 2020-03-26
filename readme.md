@@ -23,7 +23,7 @@ make start_server
   - [ Domain indepth ]( lib/domain/ )
 - [ Specs ]( spec/ )
 - [ Configuration ]( config/ )
-- [ Generated Docs ]( docs.txt )
+- [ Generated Docs ]( doc.txt ) (It's better to view it in the console)
 
 # Points of Interest
 The application treats OpenCollective as a blackbox. It attempts to express the domain as domain objects and build features ontop of the API.
