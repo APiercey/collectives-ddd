@@ -1,19 +1,13 @@
 # frozen_string_literal: true
 
-require './lib/infrastructure/open_collective/client.rb'
-require './lib/infrastructure/collective_repo.rb'
+require './spec/helpers/collective_repo_fake.rb'
 require './lib/application/collective_service.rb'
 require './lib/application/financial_inspection_service.rb'
 require './lib/domain/assets_service.rb'
 
-class Application
-  def open_collective_client
-    @open_collective_client ||= OpenCollective::Client.new
-  end
-
+class FuncionalApplication
   def collective_repo
-    @collective_repo ||= ::Collectives::CollectiveRepo
-                         .new(client: open_collective_client)
+    @collective_repo ||= CollectiveRepoFake.new
   end
 
   def assets_service

@@ -12,6 +12,7 @@ module Collectives
 
     def to_hash
       {
+        id: collective.uuid,
         slug: collective.slug,
         image: collective.image,
         contributors_count: collective.contributors_count,

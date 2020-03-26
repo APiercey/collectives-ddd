@@ -28,6 +28,8 @@ GEM
     rack (2.2.2)
     rack-protection (2.0.8.1)
       rack
+    rack-test (1.1.0)
+      rack (>= 1.0, < 3)
     rainbow (3.0.0)
     rexml (3.1.9)
     rspec (3.8.0)
@@ -77,6 +79,7 @@ PLATFORMS
 DEPENDENCIES
   factory_bot
   faraday
+  rack-test
   rspec
   rubocop
   sinatra

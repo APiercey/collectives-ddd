@@ -10,6 +10,7 @@ gem 'sinatra-contrib'
 
 group :development, :test do
   gem 'factory_bot'
+  gem 'rack-test'
   gem 'rspec'
   gem 'rubocop'
 end
