@@ -20,7 +20,7 @@ make start_server
 
 # Table of Contents
 - [ Application and Domain logic ]( lib/readme.md )
-..- [ Domain indepth ]( lib/domain/readme.md )
+  - [ Domain indepth ]( lib/domain/readme.md )
 - [ Specs ]( spec/readme.md )
 - [ Configuration ]( config/readme.md )
 - [ Generated Docs ]( docs.txt )
