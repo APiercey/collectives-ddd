@@ -5,10 +5,6 @@ class AbstractSpec
     super(*args)
   end
 
-  def satisfies?(*_args)
-    raise 'Must implement satisfies'
-  end
-
   def and(other)
     AndSpec.new(self, other)
   end
