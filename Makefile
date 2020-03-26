@@ -7,3 +7,8 @@ view_docs:
 start_dev:
 	bundle exec rackup config.ru -p 80 -o 0.0.0.0
 
+test:
+	bundle exec rspec
+
+audit:
+	bundle exec rubocop -P

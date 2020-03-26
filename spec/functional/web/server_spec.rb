@@ -4,7 +4,7 @@ require 'rack/test'
 require './lib/web/server.rb'
 require './spec/helpers/functional_application.rb'
 
-RSpec.describe 'Routes' do
+RSpec.describe Web::Server do
   include Rack::Test::Methods
 
   def app
