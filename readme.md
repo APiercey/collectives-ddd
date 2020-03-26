@@ -19,10 +19,10 @@ make start_server
 ```
 
 # Table of Contents
-- [ Application and Domain logic ]( lib/readme.md )
-  - [ Domain indepth ]( lib/domain/readme.md )
-- [ Specs ]( spec/readme.md )
-- [ Configuration ]( config/readme.md )
+- [ Application and Domain logic ]( lib/ )
+  - [ Domain indepth ]( lib/domain/ )
+- [ Specs ]( spec/ )
+- [ Configuration ]( config/ )
 - [ Generated Docs ]( docs.txt )
 
 # Points of Interest
