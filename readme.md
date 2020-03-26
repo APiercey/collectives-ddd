@@ -1,3 +1,7 @@
+<p align="center">
+  <img height="200" src="collectives.png">
+</p>
+
 # Collectives Domain Driven Design
 This application using Ruby and the [Open Collective](https://opencollective.com/) API to demonstrate how to leverage Domain Driven Design.
 
