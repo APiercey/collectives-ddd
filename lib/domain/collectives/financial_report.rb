@@ -6,7 +6,7 @@ module Collectives
     PROPS = %i[currency balance yearly_income].freeze
     private_constant :PROPS
 
-    attr_reader *PROPS
+    attr_reader(*PROPS)
 
     def initialize(options = {})
       PROPS.each do |prop|

@@ -7,7 +7,7 @@ module Collectives
                contributors_count financial_report].freeze
     private_constant :PROPS
 
-    attr_reader *PROPS
+    attr_reader(*PROPS)
 
     def initialize(options = {})
       PROPS.each do |prop|
