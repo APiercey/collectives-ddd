@@ -6,23 +6,19 @@ FactoryBot.define do
   factory :collective, class: Collectives::Collective do
     sequence(:uuid) { |n| "uuid-#{n}" }
     sequence(:slug) { |n| "slug-#{n}" }
-    currency { 'EUR' }
     image { 'http://example.com/test.png' }
-    balance { 950 }
-    yearly_income { 2000 }
     backers_count { 100 }
     contributors_count { 100 }
+    financial_report { build(:financial_report) }
 
     initialize_with { new(attributes) }
 
     trait :with_1000_usd do
-      balance { 1000 }
-      currency { 'USD' }
+      financial_report { build(:financial_report, :with_1000_usd) }
     end
 
     trait :with_9000_zloty do
-      balance { 9000 }
-      currency { 'PLN' }
+      financial_report { build(:financial_report, :with_9000_zloty) }
     end
 
     trait :with_many_contributers do

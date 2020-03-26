@@ -2,9 +2,8 @@
 
 module Collectives
   # A collective - models an Open Collective
-  class Collective
-    PROPS = %i[uuid slug image backers_count
-               contributors_count financial_report].freeze
+  class FinancialReport
+    PROPS = %i[currency balance yearly_income].freeze
     private_constant :PROPS
 
     attr_reader *PROPS

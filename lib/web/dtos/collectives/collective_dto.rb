@@ -13,7 +13,9 @@ module Collectives
     def to_hash
       {
         slug: collective.slug,
-        yearly_income: collective.yearly_income
+        image: collective.image,
+        contributors_count: collective.contributors_count,
+        backers_count: collective.backers_count
       }
     end
 

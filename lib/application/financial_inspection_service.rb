@@ -12,6 +12,11 @@ class FinancialInspectionService
     assets_service.asset_sums_by_currency collective_repo.all
   end
 
+  def calculate_collective_assets(collective_uuid)
+    assets_service
+      .asset_sums_by_currency [collective_repo.find_by_uuid(collective_uuid)]
+  end
+
   private
 
   attr_reader :collective_repo, :assets_service

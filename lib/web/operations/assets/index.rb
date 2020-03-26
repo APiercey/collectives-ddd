@@ -5,8 +5,8 @@ require './lib/web/dtos/financials/assets_dto.rb'
 
 module Web
   module Operations
-    module Financials
-      class Assets
+    module Assets
+      class Index
         def initialize(application)
           @financial_inspection_service =
             application.financial_inspection_service

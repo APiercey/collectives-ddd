@@ -3,6 +3,7 @@
 require './lib/infrastructure/open_collective/client.rb'
 require './lib/infrastructure/repo.rb'
 require './lib/domain/collectives/collective.rb'
+require './lib/domain/collectives/financial_report.rb'
 
 module Collectives
   class CollectiveRepo
@@ -70,17 +71,27 @@ module Collectives
     def parse_response(uuid, response)
       raise response.error unless response.success?
 
-      build_collective(uuid, response.data)
+      build_collective(
+        uuid,
+        build_report(response.data),
+        response.data
+      )
     end
 
-    def build_collective(uuid, data)
+    def build_report(data)
+      Collectives::FinancialReport.new(
+        yearly_income: data.fetch('yearlyIncome'),
+        balance: data.fetch('balance'),
+        currency: data.fetch('currency')
+      )
+    end
+
+    def build_collective(uuid, financial_report, data)
       Collectives::Collective.new(
         uuid: uuid,
+        financial_report: financial_report,
         slug: data.fetch('slug'),
-        currency: data.fetch('currency'),
         image: data.fetch('image'),
-        balance: data.fetch('balance'),
-        yearly_income: data.fetch('yearlyIncome'),
         backers_count: data.fetch('backersCount'),
         contributors_count: data.fetch('contributorsCount')
       )
