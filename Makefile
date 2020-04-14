@@ -11,7 +11,7 @@ test:
 	bundle exec rspec
 
 test-watch:
-	find . -name '*.rb' | entr -c bundle exec rspec
+	find . -name '*.rb' | entr -c bundle exec rspec --fail-fast
 
 audit:
 	bundle exec rubocop -P
