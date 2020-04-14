@@ -3,6 +3,7 @@
 require 'faraday'
 require 'json'
 require_relative './response.rb'
+require './lib/infrastructure/exceptions.rb'
 
 module OpenCollective
   class Client
@@ -20,10 +21,10 @@ module OpenCollective
       case response.status
       when 200..299
         { data: JSON.parse(response.body), success: true, error: nil }
-      when 400..499
+      when 404
         { data: nil, success: false, error: 'Not found' }
       else
-        { data: nil, success: false, error: 'Unexpected error occurred' }
+        raise Exceptions::InternalError
       end
     end
 

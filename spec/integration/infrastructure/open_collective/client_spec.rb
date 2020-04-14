@@ -2,6 +2,7 @@
 
 require './lib/infrastructure/open_collective/client.rb'
 require './lib/infrastructure/open_collective/response.rb'
+require './lib/infrastructure/exceptions.rb'
 
 RSpec.describe OpenCollective::Client, :integration, :contract do
   let(:client) { described_class.new }
@@ -43,6 +44,13 @@ RSpec.describe OpenCollective::Client, :integration, :contract do
     end
 
     context 'when the response is not successful' do
+      before do
+        stub_request(:any, /opencollective/).to_return(status: 500)
+      end
+
+      it 'raises an InternalError' do
+        expect { subject }.to raise_error(Exceptions::InternalError)
+      end
     end
   end
 end
