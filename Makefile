@@ -10,5 +10,8 @@ start_dev:
 test:
 	bundle exec rspec
 
+test-watch:
+	find . -name '*.rb' | entr -c bundle exec rspec
+
 audit:
 	bundle exec rubocop -P
