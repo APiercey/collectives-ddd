@@ -2,7 +2,7 @@
 
 require 'rack/test'
 require './lib/web/server.rb'
-require './spec/helpers/functional_application.rb'
+require './spec/helpers/test_application.rb'
 
 RSpec.describe Web::Server do
   include Rack::Test::Methods
@@ -12,7 +12,7 @@ RSpec.describe Web::Server do
   end
 
   let(:sample_collective) { application.collective_repo.all.sample }
-  let(:application) { FuncionalApplication.new }
+  let(:application) { TestApplication.new }
 
   shared_examples 'a get endpoint' do
     it 'returns status 200' do

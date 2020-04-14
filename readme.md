@@ -5,7 +5,7 @@
 # Collectives Domain Driven Design
 This application using Ruby and the [Open Collective](https://opencollective.com/) API to demonstrate how to leverage Domain Driven Design.
 
-The focus was to provide an environment to demonstrate how to implement integration and functional tests - on more important, how to seperate them.
+The focus was to provide an environment to demonstrate how to implement integration and unit tests - and more importantly, how to seperate them.
 
 Not all domain logic has been mapped into the Web layer. Some of this in intentional. Some of it is due to lack of spare time. If you would like clarification please just ask :).
 

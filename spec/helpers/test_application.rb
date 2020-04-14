@@ -5,7 +5,7 @@ require './lib/application/collective_service.rb'
 require './lib/application/financial_inspection_service.rb'
 require './lib/domain/assets_service.rb'
 
-class FuncionalApplication
+class TestApplication
   def collective_repo
     @collective_repo ||= CollectiveRepoFake.new
   end

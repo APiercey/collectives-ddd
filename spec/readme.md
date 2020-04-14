@@ -1,9 +1,9 @@
 # Specs
 Tests are split between two kinds:
 - Integration
-- Functional
+- Unit
 
-## Functional Tests
+## Unit Tests
 These tests exhibit the behavior of the domain and test the business logic it is supposed to convey. They do not query to Open Collective API but rather use a (Fake Repository)[https://8thlight.com/blog/eric-smith/2011/10/27/thats-not-yours.html] for all of it's tests.
 
 ## Integration Tests
