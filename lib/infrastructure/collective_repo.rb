@@ -4,10 +4,14 @@ require './lib/infrastructure/open_collective/client.rb'
 require './lib/infrastructure/repo.rb'
 require './lib/domain/collectives/collective.rb'
 require './lib/domain/collectives/financial_report.rb'
+require './lib/shared/hash_initialization.rb'
 
 module Collectives
   class CollectiveRepo
     include Repo
+    include HashInitialization
+
+    attr_readable :client
 
     KNOWN_COLLECTIVES =
       {
@@ -18,10 +22,6 @@ module Collectives
         '1ca93fd8-6742-46cd-8370-69ed6f099dec' => 'witchcraft',
         'ef68869d-6a77-49d4-b5f8-c6236478eb71' => 'commanded'
       }.freeze
-
-    def initialize(client:)
-      @client = client
-    end
 
     def find_by_uuid(uuid)
       response = client.find_by_slug(get_slug(uuid))

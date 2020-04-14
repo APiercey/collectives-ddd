@@ -1,17 +1,12 @@
 # frozen_string_literal: true
 
+require './lib/shared/hash_initialization.rb'
+
 module Collectives
   # A collective - models an Open Collective
   class FinancialReport
-    PROPS = %i[currency balance yearly_income].freeze
-    private_constant :PROPS
+    include HashInitialization
 
-    attr_reader(*PROPS)
-
-    def initialize(options = {})
-      PROPS.each do |prop|
-        instance_variable_set("@#{prop}", options.fetch(prop))
-      end
-    end
+    attr_readable :currency, :balance, :yearly_income
   end
 end

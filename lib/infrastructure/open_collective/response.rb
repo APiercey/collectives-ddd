@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
+require './lib/shared/hash_initialization.rb'
+
 module OpenCollective
   class Response
-    attr_reader :data, :error
+    include HashInitialization
 
-    def initialize(data:, success:, error:)
-      @data = data
-      @success = success
-      @error = error
-    end
+    attr_readable :data, :success, :error
 
     def success?
       success ? true : false
