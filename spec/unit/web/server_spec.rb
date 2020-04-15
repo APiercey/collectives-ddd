@@ -18,10 +18,11 @@ RSpec.describe TestServer do
 
   let(:collective_schema) do
     {
-      'contributors_count' => a_value,
+      'id' => be_a_uuid_4,
+      'contributors_count' => a_value > -1,
       'slug' => a_kind_of(String),
-      'image' => a_kind_of(String),
-      'backers_count' => a_value
+      'image' => match(/http/),
+      'backers_count' => a_value > -1
     }
   end
 

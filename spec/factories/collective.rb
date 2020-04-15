@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 require './lib/domain/collectives/collective.rb'
+require 'securerandom'
 
 FactoryBot.define do
   factory :collective, class: Collectives::Collective do
-    sequence(:uuid) { |n| "uuid-#{n}" }
+    sequence(:uuid) { |_n| SecureRandom.uuid }
     sequence(:slug) { |n| "slug-#{n}" }
     image { 'http://example.com/test.png' }
     backers_count { 100 }

@@ -4,16 +4,20 @@ require 'rspec/expectations'
 
 RSpec::Matchers.define :be_a_currency_code do
   match do |actual|
-    is_correct_size = actual.length == 3
-    is_upcase = actual == actual.upcase
+    expect(actual.length).to eql(3)
+    expect(actual).to eql(actual.upcase)
+  end
+end
 
-    is_correct_size && is_upcase
+RSpec::Matchers.define :be_a_uuid_4 do
+  match do |actual|
+    expect(actual).to match(/[a-f0-9]{8}-([a-f0-9]{4}-){3}[a-f0-9]{12}/)
   end
 end
 
 RSpec::Matchers.define :have_json_header do
   match do |actual|
-    actual.headers['Content-Type'] == 'application/json'
+    expect(actual.headers['Content-Type']).to eql('application/json')
   end
 end
 
