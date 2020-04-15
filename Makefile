@@ -15,3 +15,9 @@ test-watch:
 
 audit:
 	bundle exec rubocop -P
+
+build:
+	docker build . -t collectives
+
+start_prod: build
+	docker run -p 80:80 collectives
