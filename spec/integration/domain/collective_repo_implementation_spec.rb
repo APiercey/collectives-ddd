@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require './lib/infrastructure/collective_repo.rb'
-require_relative './collective_repo_shared_examples.rb'
+require './spec/helpers/shared_examples/collective_repo_shared_examples.rb'
 
 RSpec.describe Collectives::CollectiveRepo, :integration do
   let(:client) { OpenCollective::Client.new }
