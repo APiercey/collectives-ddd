@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require './lib/domain/collectives/low_contributors_specification.rb'
-require './spec/helpers/shared_examples/specification_behaviour.rb'
+require './spec/support/shared_examples/specification_behaviour.rb'
 
 RSpec.describe Collectives::LowContributorsSpecification do
   subject(:spec) { described_class.new }

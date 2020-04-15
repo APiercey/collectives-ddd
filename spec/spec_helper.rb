@@ -2,8 +2,8 @@
 
 require 'factory_bot'
 require './config/environment.rb'
-require_relative './helpers/matchers.rb'
-require_relative './helpers/helpers.rb'
+require_relative './support/matchers.rb'
+require_relative './support/helpers.rb'
 require 'webmock/rspec'
 
 RSpec.configure do |config|

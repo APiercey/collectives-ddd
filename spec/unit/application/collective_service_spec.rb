@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require './spec/helpers/collective_repo_fake.rb'
+require './spec/support/collective_repo_fake.rb'
 require './lib/application/collective_service.rb'
 
 RSpec.describe CollectiveService do

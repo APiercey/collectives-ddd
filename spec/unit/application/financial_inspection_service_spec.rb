@@ -2,7 +2,7 @@
 
 require './lib/application/financial_inspection_service.rb'
 require './lib/domain/assets_service.rb'
-require './spec/helpers/collective_repo_fake.rb'
+require './spec/support/collective_repo_fake.rb'
 
 RSpec.describe FinancialInspectionService do
   let(:collective_repo) { CollectiveRepoFake.new }

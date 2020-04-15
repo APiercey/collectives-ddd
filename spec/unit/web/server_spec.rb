@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 require 'rack/test'
-require './spec/helpers/test_server.rb'
-require './spec/helpers/test_application.rb'
+require './spec/support/test_server.rb'
+require './spec/support/test_application.rb'
 require './lib/infrastructure/exceptions.rb'
-require './spec/helpers/shared_examples/a_get_endpoint.rb'
+require './spec/support/shared_examples/a_get_endpoint.rb'
 
 RSpec.describe TestServer do
   include Rack::Test::Methods
