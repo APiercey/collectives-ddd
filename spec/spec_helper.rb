@@ -3,10 +3,12 @@
 require 'factory_bot'
 require './config/environment.rb'
 require_relative './helpers/matchers.rb'
+require_relative './helpers/helpers.rb'
 require 'webmock/rspec'
 
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
+  config.include Helpers
 
   config.example_status_persistence_file_path = './failed_specs'
   config.run_all_when_everything_filtered = true
