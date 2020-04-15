@@ -6,10 +6,13 @@ require_relative './operations/collectives/index.rb'
 require_relative './operations/collectives/show.rb'
 require_relative './operations/assets/index.rb'
 require_relative './operations/assets/show.rb'
+require './lib/infrastructure/exceptions.rb'
 
 module Web
   class Server < Sinatra::Base
     attr_reader :application
+
+    set :show_exceptions, false
 
     def initialize(application)
       super
@@ -40,8 +43,15 @@ module Web
         .call
     end
 
-    get '/' do
-      'Hello world'
+    error Exceptions::InternalError do
+      status 422
+
+      body = {
+        code: 422,
+        message: 'Sorry - your request cannot be processed at the moment'
+      }
+
+      json body
     end
   end
 end

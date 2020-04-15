@@ -1,18 +1,19 @@
 # frozen_string_literal: true
 
 require 'rack/test'
-require './lib/web/server.rb'
+require './spec/helpers/test_server.rb'
 require './spec/helpers/test_application.rb'
+require './lib/infrastructure/exceptions.rb'
 
-RSpec.describe Web::Server do
+RSpec.describe TestServer do
   include Rack::Test::Methods
 
   def app
-    Web::Server.new(application)
+    described_class.new(application)
   end
 
-  let(:sample_collective) { application.collective_repo.all.sample }
   let(:application) { TestApplication.new }
+  let(:sample_collective) { application.collective_repo.all.sample }
 
   shared_examples 'a get endpoint' do
     it 'returns status 200' do
@@ -96,6 +97,27 @@ RSpec.describe Web::Server do
           'PLN' => 9000,
           'EUR' => 3800
         )
+      end
+    end
+  end
+
+  context 'when an error occurs' do
+    describe 'Exceptions::InternalError' do
+      let(:result) { get '/internal_error_route' }
+
+      it 'it returns status 422' do
+        expect(result.status).to eq 422
+      end
+
+      it 'returns Content-Type as application/json' do
+        header = result.headers['Content-Type']
+
+        expect(header).to be_truthy.and eql('application/json')
+      end
+
+      it 'provides a body' do
+        expect(JSON.parse(result.body))
+          .to include('code' => 422, 'message' => a_kind_of(String))
       end
     end
   end
