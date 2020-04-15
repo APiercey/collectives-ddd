@@ -71,6 +71,22 @@ RSpec.describe TestServer do
     end
   end
 
+  describe 'GET /collectives/:id/assets' do
+    before { get "/collectives/#{sample_collective.uuid}/assets" }
+
+    it_behaves_like 'a get endpoint'
+
+    describe 'body' do
+      subject { parsed_body }
+
+      let(:report) { sample_collective.financial_report }
+
+      it 'returns the correct assets' do
+        is_expected.to include(report.currency => report.balance)
+      end
+    end
+  end
+
   context 'when an error occurs' do
     describe 'Exceptions::InternalError' do
       subject { last_response }
@@ -85,22 +101,6 @@ RSpec.describe TestServer do
 
         it do
           is_expected.to include('code' => 422, 'message' => a_kind_of(String))
-        end
-      end
-    end
-
-    describe 'GET /collectives/:id/assets' do
-      before { get "/collectives/#{sample_collective.uuid}/assets" }
-
-      it_behaves_like 'a get endpoint'
-
-      describe 'body' do
-        subject { parsed_body }
-
-        let(:report) { sample_collective.financial_report }
-
-        it 'returns the correct assets' do
-          is_expected.to include(report.currency => report.balance)
         end
       end
     end
