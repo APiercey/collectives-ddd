@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 require 'rack/test'
-require './spec/support/test_server.rb'
+require './lib/web/server.rb'
 require './spec/support/test_application.rb'
-require './lib/infrastructure/exceptions.rb'
 require './spec/support/shared_examples/a_get_endpoint.rb'
 
-RSpec.describe TestServer do
+RSpec.describe Web::Server do
   include Rack::Test::Methods
 
   def app
@@ -83,25 +82,6 @@ RSpec.describe TestServer do
 
       it 'returns the correct assets' do
         is_expected.to include(report.currency => report.balance)
-      end
-    end
-  end
-
-  context 'when an error occurs' do
-    describe 'Exceptions::InternalError' do
-      subject { last_response }
-
-      before { get '/internal_error_route' }
-
-      it { is_expected.to have_status 422 }
-      it { should have_json_header }
-
-      describe 'body' do
-        subject { parsed_body }
-
-        it do
-          is_expected.to include('code' => 422, 'message' => a_kind_of(String))
-        end
       end
     end
   end
