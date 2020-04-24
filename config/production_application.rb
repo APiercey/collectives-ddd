@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require './lib/infrastructure/open_collective/client.rb'
-require './lib/infrastructure/collective_repo.rb'
+require './lib/application/collective_repo.rb'
 require './lib/application/collective_service.rb'
 require './lib/application/financial_inspection_service.rb'
 require './lib/domain/generate_financial_report_service.rb'

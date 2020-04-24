@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 require './lib/domain/collectives/collective.rb'
-require './lib/infrastructure/repo.rb'
+require './lib/infrastructure/exceptions.rb'
 
 class CollectiveRepoFake
-  include Repo
   include FactoryBot::Syntax::Methods
 
   def initialize
@@ -14,7 +13,7 @@ class CollectiveRepoFake
   def find_by_uuid(uuid)
     collective = collectives.find { |c| c.uuid.eql? uuid }
 
-    collective || raise(EntityNotFound, "#{uuid} not found")
+    collective || raise(Exceptions::EntityNotFound, "#{uuid} not found")
   end
 
   def all

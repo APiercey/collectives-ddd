@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require './lib/domain/collectives/collective.rb'
-require './lib/infrastructure/repo.rb'
+require './lib/infrastructure/exceptions.rb'
 
 RSpec.shared_examples 'a collective repo' do
   subject { repo }
@@ -25,7 +25,7 @@ RSpec.shared_examples 'a collective repo' do
 
       it 'raises a Repo::EntityNotFound error' do
         expect { subject }
-          .to raise_error(Repo::EntityNotFound)
+          .to raise_error(Exceptions::EntityNotFound)
           .with_message(/#{collective_uuid}/)
       end
     end
