@@ -10,16 +10,20 @@ FactoryBot.define do
     image { 'http://example.com/test.png' }
     backers_count { 100 }
     contributors_count { 100 }
-    financial_report { build(:financial_report) }
+    currency { 'EUR' }
+    balance { 950 }
+    yearly_income { 2000 }
 
     initialize_with { new(attributes) }
 
     trait :with_1000_usd do
-      financial_report { build(:financial_report, :with_1000_usd) }
+      balance { 1000 }
+      currency { 'USD' }
     end
 
     trait :with_9000_zloty do
-      financial_report { build(:financial_report, :with_9000_zloty) }
+      balance { 9000 }
+      currency { 'PLN' }
     end
 
     trait :with_many_contributers do

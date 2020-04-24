@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rack/test'
+
 RSpec.shared_examples 'a get endpoint' do
   subject { last_response }
 

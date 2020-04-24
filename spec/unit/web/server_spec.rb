@@ -78,10 +78,10 @@ RSpec.describe Web::Server do
     describe 'body' do
       subject { parsed_body }
 
-      let(:report) { sample_collective.financial_report }
+      let(:asset) { sample_collective.asset }
 
       it 'returns the correct assets' do
-        is_expected.to include(report.currency => report.balance)
+        is_expected.to include(asset.currency => asset.balance)
       end
     end
   end

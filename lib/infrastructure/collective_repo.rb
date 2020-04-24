@@ -71,29 +71,19 @@ module Collectives
     def parse_response(uuid, response)
       raise response.error unless response.success?
 
-      build_collective(
-        uuid,
-        build_report(response.data),
-        response.data
-      )
+      build_collective(uuid, response.data)
     end
 
-    def build_report(data)
-      Collectives::FinancialReport.new(
-        yearly_income: data.fetch('yearlyIncome'),
-        balance: data.fetch('balance'),
-        currency: data.fetch('currency')
-      )
-    end
-
-    def build_collective(uuid, financial_report, data)
+    def build_collective(uuid, data)
       Collectives::Collective.new(
         uuid: uuid,
-        financial_report: financial_report,
         slug: data.fetch('slug'),
         image: data.fetch('image'),
         backers_count: data.fetch('backersCount'),
-        contributors_count: data.fetch('contributorsCount')
+        contributors_count: data.fetch('contributorsCount'),
+        yearly_income: data.fetch('yearlyIncome'),
+        balance: data.fetch('balance'),
+        currency: data.fetch('currency')
       )
     end
   end

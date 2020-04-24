@@ -1,13 +1,18 @@
 # frozen_string_literal: true
 
 require './lib/application/financial_inspection_service.rb'
-require './lib/domain/assets_service.rb'
+require './lib/domain/generate_financial_report_service.rb'
 require './spec/support/collective_repo_fake.rb'
 
 RSpec.describe FinancialInspectionService do
   let(:collective_repo) { CollectiveRepoFake.new }
-  let(:assets_service) { AssetsService.new }
-  let(:service) { described_class.new(collective_repo, assets_service) }
+  let(:generate_financial_report_service) { GenerateFinancialReport.new }
+  let(:service) do
+    described_class.new(
+      collective_repo,
+      generate_financial_report_service
+    )
+  end
 
   let(:collective_with_usd) { build(:collective, :with_1000_usd) }
 
